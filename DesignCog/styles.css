@@ -1,6 +1,7 @@
 .portfolio-header {
   position: relative;
-  background-image: url(images/header-bg.jpg);
+/*  background-image: url(images/header-bg.jpg);*/
+  background-color: rgba(72, 61, 139, 1);
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -21,7 +22,7 @@
 }
 
 .portfolio-logo-row {
-  min-height: 200px;
+  min-height: 100px;
 }
 
 .is-compact .portfolio-logo-row {
@@ -31,26 +32,26 @@
 .portfolio-logo {
   background: url(images/logo.png) 50% no-repeat;
   background-size: cover;
-  height: 150px;
+  height: 50px;
   width: 150px;
   margin: auto auto 10px;
 }
 
 .is-compact .portfolio-logo {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 90px;
   margin-top: 7px;
 }
 
 .portfolio-navigation-row {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: rgba(240, 248, 255, 0.4);
   text-transform: uppercase;
   height: 45px;
 }
 
 .portfolio-navigation-row  .mdl-navigation {
   text-align: center;
-  max-width: 900px;
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -168,3 +169,69 @@ footer {
   background-size: cover;
 }
 
+/*Add by me, not from Material Design Lite*/
+table {
+  font-size: 120%;  
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+}
+@media screen and (max-width: 767px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
+    .table-responsive > .table {
+        margin-bottom: 0;
+    }
+    .table-responsive > .table > thead > tr > th,
+    .table-responsive > .table > tbody > tr > th,
+    .table-responsive > .table > tfoot > tr > th,
+    .table-responsive > .table > thead > tr > td,
+    .table-responsive > .table > tbody > tr > td,
+    .table-responsive > .table > tfoot > tr > td {
+        white-space: nowrap;
+    }
+    .table-responsive > .table-bordered {
+        border: 0;
+    }
+    .table-responsive > .table-bordered > thead > tr > th:first-child,
+    .table-responsive > .table-bordered > tbody > tr > th:first-child,
+    .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+    .table-responsive > .table-bordered > thead > tr > td:first-child,
+    .table-responsive > .table-bordered > tbody > tr > td:first-child,
+    .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+        border-left: 0;
+    }
+    .table-responsive > .table-bordered > thead > tr > th:last-child,
+    .table-responsive > .table-bordered > tbody > tr > th:last-child,
+    .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+    .table-responsive > .table-bordered > thead > tr > td:last-child,
+    .table-responsive > .table-bordered > tbody > tr > td:last-child,
+    .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+        border-right: 0;
+    }
+    .table-responsive > .table-bordered > tbody > tr:last-child > th,
+    .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+    .table-responsive > .table-bordered > tbody > tr:last-child > td,
+    .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+        border-bottom: 0;
+    }
+}
+
+.material-icons.md-15 { font-size: 15px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.orange600 { color: #FB8C00; }
