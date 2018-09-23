@@ -1,6 +1,6 @@
 .portfolio-header {
   position: relative;
-/*  background-image: url(images/header-bg.jpg);*/
+  background-image: url(images/header-bg4.jpg);
   background-color: rgba(72, 61, 139, 1);
 }
 
@@ -79,7 +79,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgb(255,64,129);
+  background-color: rgb(64, 130, 255);
   left: 15%;
 }
 
