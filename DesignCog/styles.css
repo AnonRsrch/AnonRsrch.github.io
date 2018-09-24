@@ -44,7 +44,7 @@
 }
 
 .portfolio-navigation-row {
-  background-color: rgba(240, 248, 255, 0.4);
+  background-color: rgba(240, 248, 255, 0.2);
   text-transform: uppercase;
   height: 45px;
 }
@@ -235,3 +235,4 @@ table {
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 .material-icons.orange600 { color: #FB8C00; }
+.material-icons.green600 { color: #47ccaa; }
