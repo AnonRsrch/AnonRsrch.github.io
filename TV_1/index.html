@@ -1,0 +1,203 @@
+<!-- External CSS references -->
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" integrity="sha384-IS73LIqjtYesmURkDE9MXKbXqYA8rvKEp/ghicjem7Vc3mGRdQRptJSz60tvrB6+" rel="stylesheet" /><!-- Open internal style sheet -->
+<div class="alert alert-success"><h3>Top 15 Countries with the most goals scored in last 5 FIFA World Cups</h3></div>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<title>Goals in FIFA World Cup</title>
+<style>
+
+.rectangle {
+	fill: orange;
+}
+.rectangle:hover {
+	fill: orangered;
+}
+.axis {
+  font: 15px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+   
+}
+  
+</style>
+</head>
+<body>
+
+<div id="drop" align=center class="h3 alert alert-warning"></div>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<script>
+
+var margin = {top: 80, right: 180, bottom: 100, left: 180},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var tip = d3.tip()
+		  .attr('class', 'd3-tip')
+		  .offset([-10, 0])
+		  .html(function(d) {
+				console.log(d);
+		    return "<strong>Country:</strong> <span style='color:red'>" + d.Country + "</span>";
+		  })
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+d3.tsv("VotingInformation.tsv", function(error, data){
+
+	// filter year
+	var data = data.filter(function(d){return d.Goals == '2012';});
+	// Get every column value
+	var elements = Object.keys(data[0])
+		.filter(function(d){
+			return ((d != "Goals") & (d != "Country"));
+		});
+	var selection = elements[0];
+
+	var y = d3.scale.linear()
+			.domain([0, d3.max(data, function(d){
+				return +d[selection];
+			})])
+			.range([height, 0]);
+
+	var x = d3.scale.ordinal()
+			.domain(data.map(function(d){ return d.Country;}))
+			.rangeBands([0, width]);
+
+
+	var xAxis = d3.svg.axis()
+		.scale(x)
+	    .orient("bottom");
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+	    .orient("left");
+
+	svg.append("g")
+    	.attr("class", "x axis")
+    	.attr("transform", "translate(0," + height + ")")
+    	.call(xAxis)
+    	.selectAll("text")
+    	.style("font-size", "15px")
+      	.style("text-anchor", "end")
+      	.attr("dx", "-.8em")
+      	.attr("dy", "-.70em")
+      	.attr("transform", "rotate(-90)" );
+
+
+ 	svg.append("g")
+    	.attr("class", "y axis")
+    	.call(yAxis);
+
+	svg.selectAll("rectangle")
+		.data(data)
+		.enter()
+		.append("rect")
+		.attr("class","rectangle")
+		.attr("width", x.rangeBand() - 2)
+		.attr("height", function(d){
+			return height - y(+d[selection]);
+		})
+		.attr("x", function(d, i){
+			return (width / data.length) * i ;
+		})
+		.attr("y", function(d){
+			return y(+d[selection]);
+		})
+		.on('mouseover', tip.show)
+    .on('mouseout', tip.hide)
+		.append("title")
+		.text(function(d){
+			return d.Country + " : " + d[selection];
+		});
+
+	var selector = d3.select("#drop")
+    	.append("select")
+    	.attr("id","dropdown")
+    	.on("change", function(d){
+        	selection = document.getElementById("dropdown");
+
+        	y.domain([0, d3.max(data, function(d){
+				return +d[selection.value];})]);
+
+        	yAxis.scale(y);
+
+        	d3.selectAll(".rectangle")
+           		.transition()
+	            .attr("height", function(d){
+					return height - y(+d[selection.value]);
+				})
+				.attr("x", function(d, i){
+					return (width / data.length) * i ;
+				})
+				.attr("y", function(d){
+					return y(+d[selection.value]);
+				})
+           		.ease("linear")
+           		.select("title")
+           		.text(function(d){
+           			return d.Country + " : " + d[selection.value];
+           		});
+
+           	d3.selectAll("g.y.axis")
+           		.transition()
+           		.call(yAxis);
+
+         });
+
+    selector.selectAll("option")
+      .data(elements)
+      .enter().append("option")
+      .attr("value", function(d){
+        return d;
+      })
+      .text(function(d){
+        return d;
+      })
+
+
+});
+
+</script>
+
+</body>
