@@ -117,7 +117,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
     	.attr("class", "x axis")
     	.attr("transform", "translate(0," + height + ")")
     	.call(xAxis)
-    	.selectAll("text")
+    .selectAll("text")
     	.style("font-size", "15px")
       	.style("text-anchor", "end")
       	.attr("dx", "-.8em")
@@ -127,7 +127,12 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 
  	svg.append("g")
     	.attr("class", "y axis")
-    	.call(yAxis);
+    	.call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Number of Goal(s)");
 
 	svg.selectAll("rectangle")
 		.data(data)
