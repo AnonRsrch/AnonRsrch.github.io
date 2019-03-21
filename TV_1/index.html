@@ -72,7 +72,7 @@ var tip = d3.tip()
 		  .offset([-10, 0])
 		  .html(function(d) {
 				console.log(d);
-		    return "<strong>Country:</strong> <span style='color:red'>" + d.Country + "</span>";
+		    return "<strong>d.Country:</strong> <span style='color:red'>" + d[selection.value] + "</span>";
 		  })
 
 var svg = d3.select("body").append("svg")
@@ -155,7 +155,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
     .on('mouseout', tip.hide)
 		.append("title")
 		.text(function(d){
-			return d.Country + " : " + d[selection.value];
+			return d.Country + " : " + d[selection];
 		});
 
 	var selector = d3.select("#drop")
