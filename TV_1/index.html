@@ -155,7 +155,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
     .on('mouseout', tip.hide)
 		.append("title")
 		.text(function(d){
-			return d[selection] + " : " + d[selection.value];
+			return d.Country + " : " + d[selection];
 		});
 
 	var selector = d3.select("#drop")
@@ -210,5 +210,5 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 	<h4>How to Use:</h4>
 	<p>Use dropdown list to select different FIFA World Cups.</p>
 	<p>Mouse on each bar to see tooltips.</p>
-</div>
+	</div>
 </body>
