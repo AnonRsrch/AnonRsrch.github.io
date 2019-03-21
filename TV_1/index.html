@@ -155,7 +155,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
     .on('mouseout', tip.hide)
 		.append("title")
 		.text(function(d){
-			return d[selection] + " : " + d[selection.value];
+			return d.Country + " : " + d[selection.value];
 		});
 
 	var selector = d3.select("#drop")
