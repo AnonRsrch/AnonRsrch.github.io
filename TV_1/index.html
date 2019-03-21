@@ -72,7 +72,7 @@ var tip = d3.tip()
 		  .offset([-10, 0])
 		  .html(function(d) {
 				console.log(d);
-		    return "<strong>Goals:</strong> <span style='color:red'>" + d[selection.value] + "</span>";
+		    return "<strong>Goals:</strong> <span style='color:red'>" + d.Country + "</span>";
 		  })
 
 var svg = d3.select("body").append("svg")
