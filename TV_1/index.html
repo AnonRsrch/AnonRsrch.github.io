@@ -180,7 +180,6 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 				.attr("y", function(d){
 					return y(+d[selection.value]);
 				})
-           		.ease("linear")
            		.select("title")
            		.text(function(d){
            			return d.Country + " : " + d[selection.value];
