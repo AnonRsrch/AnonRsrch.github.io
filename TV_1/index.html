@@ -73,6 +73,7 @@ var svg = d3.select("body").append("svg")
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+svg.call(tip);
 
 d3.tsv("VotingInformation.tsv", function(error, data){
 
