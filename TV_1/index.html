@@ -52,10 +52,7 @@
   left: 0;
    
 }
-/* set background color */
-.bar-chart {
-    background-color: #e8e8e8;
-}
+
   
 </style>
 </head>
@@ -74,8 +71,7 @@ var svg = d3.select("body").append("svg")
 	.attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .attr("class", "bar-chart");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
 d3.tsv("VotingInformation.tsv", function(error, data){
