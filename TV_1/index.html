@@ -1,5 +1,6 @@
 <!-- External CSS references -->
 <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" integrity="sha384-IS73LIqjtYesmURkDE9MXKbXqYA8rvKEp/ghicjem7Vc3mGRdQRptJSz60tvrB6+" rel="stylesheet" /><!-- Open internal style sheet -->
+<div class="alert alert-info"><h3>Top 15 Countries with the most goals scored in last 5 FIFA World Cups</h3></div>
 <!DOCTYPE html>
 <meta charset="utf-8">
 <head>
@@ -52,12 +53,11 @@
   left: 0;
    
 }
-
   
 </style>
 </head>
 <body>
-<div class="d3-tip"><h3>Top 15 Countries with the most goals scored in last 5 FIFA World Cups</h3></div>
+
 <div id="drop" align=center class="h3"></div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
@@ -66,6 +66,14 @@
 var margin = {top: 80, right: 180, bottom: 100, left: 180},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
+
+var tip = d3.tip()
+		  .attr('class', 'd3-tip')
+		  .offset([-10, 0])
+		  .html(function(d) {
+				console.log(d);
+		    return "<strong>Country:</strong> <span style='color:red'>" + d.Country + "</span>";
+		  })
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width + margin.left + margin.right)
