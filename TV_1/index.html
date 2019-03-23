@@ -24,25 +24,16 @@
   shape-rendering: crispEdges;
 }
 
-.d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
-  
+ 
 </style>
 </head>
 <body>
 
 <div id="drop" align=center></div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
 
-var margin = {top: 80, right: 180, bottom: 100, left: 180},
+var margin = {top: 80, right: 180, bottom: 80, left: 180},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -125,7 +116,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
         .text(function(d){
            	return d.Country + " : " + d[selection.value];
 		});
-		
+
 
 	var selector = d3.select("#drop")
     	.append("select")
