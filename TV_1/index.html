@@ -105,7 +105,14 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 
  	svg.append("g")
     	.attr("class", "y axis")
-    	.call(yAxis);
+    	.call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - (margin.left / 4))
+      .attr("x",0 - (height / 2))
+      .style("text-anchor", "middle")
+      .attr("dy", "1em")
+      .text("Number of Goal(s)");
 
 	svg.selectAll("rectangle")
 		.data(data)
