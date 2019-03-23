@@ -1,5 +1,6 @@
-<h1>Top 5 Countries with the most goals scored in last 5 FIFA World Cups</h1>
-<!DOCTYPE html>
+<!-- External CSS references -->
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" integrity="sha384-IS73LIqjtYesmURkDE9MXKbXqYA8rvKEp/ghicjem7Vc3mGRdQRptJSz60tvrB6+" rel="stylesheet" /><!-- Open internal style sheet -->
+<div class="d3-tip"><h3>Top 15 Countries with the most goals scored in last 5 FIFA World Cups</h3></div><!DOCTYPE html>
 <meta charset="utf-8">
 <head>
 <style>
@@ -114,16 +115,23 @@ d3.tsv("VotingInformation.tsv", function(error, data){
     	.attr("transform", "translate(0," + height + ")")
     	.call(xAxis)
     	.selectAll("text")
-    	.style("font-size", "8px")
+    	.style("font-size", "15px")
       	.style("text-anchor", "end")
       	.attr("dx", "-.8em")
-      	.attr("dy", "-.55em")
+      	.attr("dy", "-.70em")
       	.attr("transform", "rotate(-90)" );
 
 
  	svg.append("g")
     	.attr("class", "y axis")
     	.call(yAxis);
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - (margin.left / 4))
+      .attr("x",0 - (height / 2))
+      .style("text-anchor", "middle")
+      .attr("dy", "1em")
+      .text("Number of Goal(s)");
 
 	svg.selectAll("rectangle")
 		.data(data)
@@ -195,4 +203,9 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 });
 
 </script>
+<div class="alert alert-warning" role="alert">
+	<h4>How to Use:</h4>
+	<p>- Use dropdown list to select different year.</p>
+	<p>- Mouse on each bar to see the tooltip.</p>
+</div>
 </body>
