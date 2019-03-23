@@ -37,7 +37,7 @@
 </head>
 <body>
 
-<div id="drop" align=center class="h3"></div>
+<div id="drop" align=center></div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
@@ -46,21 +46,11 @@ var margin = {top: 80, right: 180, bottom: 100, left: 180},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var tip = d3.tip()
-		  .attr('class', 'd3-tip')
-		  .offset([-10, 0])
-		  .html(function(d) {
-				console.log(d);
-		    return "<strong>Country:</strong> <span style='color:red'>" + d.Country + "</span>";
-		  })
-
 var svg = d3.select("body").append("svg")
 	.attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 	.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-svg.call(tip);
 
 d3.tsv("VotingInformation.tsv", function(error, data){
 
@@ -130,12 +120,12 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 		.attr("y", function(d){
 			return y(+d[selection]);
 		})
-		.on('mouseover', tip.show)
-    .on('mouseout', tip.hide)
-		.append("title")
-		.text(function(d){
-			return d.Country + " : " + d[selection];
+		.ease("linear")
+        .select("title")
+        .text(function(d){
+           	return d.Country + " : " + d[selection.value];
 		});
+		
 
 	var selector = d3.select("#drop")
     	.append("select")
