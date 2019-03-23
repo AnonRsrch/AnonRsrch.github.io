@@ -32,33 +32,14 @@
   border-radius: 2px;
 }
 
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
-
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
 
 </style>
 </head>
 <body>
-<div id="drop" align=center></div>
+<div id="drop" align=center class="lead alert alert-primary"></div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-<script>
+<script shadow p-3 mb-5 bg-white rounded>
 
 var margin = {top: 80, right: 180, bottom: 80, left: 180},
     width = 960 - margin.left - margin.right,
@@ -197,9 +178,11 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 
 </script>
 
-<div class="alert alert-warning" role="alert">
+<div class="alert alert-info">
 	<h4>How to Use:</h4>
-	<p>- Use dropdown list to select different year.</p>
-	<p>- Mouse on each bar to see the tooltip.</p>
+		<ui>
+			<li>Use dropdown list to select different year.</li>
+			<li>Mouse on each bar to see the tooltip.</li>
+		</ui>
 </div>
 </body>
